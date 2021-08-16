@@ -58,7 +58,7 @@ us_state_abbrev = {
 }
 
 def get_state_ids(state_map: dict):
-  st_ids = list()
-  for st in list(state_map.keys()):
-      st_ids.append(us_state_abbrev[st])
-  return st_ids
+    st_ids = list()
+    for st in list(state_map.keys()):
+        st_ids.append(us_state_abbrev[st])
+    return st_ids
