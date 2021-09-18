@@ -17,6 +17,11 @@ import warnings
 warnings.filterwarnings('ignore')
 pd.set_option("display.max_columns", 100)
 
+def resample(df: pd.DataFrame, sample: str, what: list=None):
+    if what is not None:
+        return df[what].resample(sample).mean()
+    return df[['engagement_index', 'pct_access']].resample(sample).mean()
+
 def add_secondary_y_plot(fig: go.Figure, 
                          row: int, col: int, 
                          x1: np.array, x2: np.array, 
