@@ -83,13 +83,13 @@ def generate_state_map(districts_df: pd.DataFrame, covid_case_df: pd.DataFrame, 
             ids = districts_df[districts_df.state == state].engage_file_id.values
             dfs = list()
             for i in ids:
-                dfs.append(engage_dfs[i])
+                dfs.append(engage_dfs[i].groupby(by=['dt'])[['pct_access', 'engagement_index']].sum())
             engage_df = pd.concat(dfs)
             engage_df1 = engage_df.groupby(by=['dt'])[['pct_access', 'engagement_index']].mean()
-            engage_df2 = engage_df.groupby(by=['dt', 'lp_id'])[['pct_access', 'engagement_index']].mean()
-            engage_df2.reset_index().set_index('dt')
+            #engage_df2 = engage_df.groupby(by=['dt', 'lp_id'])[['pct_access', 'engagement_index']].mean()
+            #engage_df2.reset_index().set_index('dt')
 
-            state_map[state] = [case_df, engage_df1, engage_df2]
+            state_map[state] = [case_df, engage_df1]
             
     return state_map
 
@@ -99,13 +99,14 @@ def generate_pct_black_hisp_map(districts_df: pd.DataFrame, engage_dfs: list):
         ids = districts_df[districts_df['pct_black/hispanic'] == val].engage_file_id.values
         dfs = list()
         for i in ids:
-            dfs.append(engage_dfs[i])
+            dfs.append(engage_dfs[i].groupby(by=['dt'])[['pct_access', 'engagement_index']].max())
         engage_df = pd.concat(dfs)
         engage_df1 = engage_df.groupby(by=['dt'])[['pct_access', 'engagement_index']].mean()
-        engage_df2 = engage_df.groupby(by=['dt', 'lp_id'])[['pct_access', 'engagement_index']].mean()
-        engage_df2.reset_index().set_index('dt')
+        #engage_df2 = engage_df.groupby(by=['dt', 'lp_id'])[['pct_access', 'engagement_index']].mean()
+        #engage_df2.reset_index().set_index('dt')
 
-        pct_black_hisp_map[val] = [engage_df1, engage_df2]
+        #pct_black_hisp_map[val] = [engage_df1, engage_df2]
+        pct_black_hisp_map[val] = engage_df1
     return pct_black_hisp_map
         
 def generate_pct_free_reduced_lunch_map(districts_df: pd.DataFrame, engage_dfs: list):
@@ -114,16 +115,17 @@ def generate_pct_free_reduced_lunch_map(districts_df: pd.DataFrame, engage_dfs: 
         ids = districts_df[districts_df['pct_free/reduced'] == val].engage_file_id.values
         dfs = list()
         for i in ids:
-            dfs.append(engage_dfs[i])
+            dfs.append(engage_dfs[i].groupby(by=['dt'])[['pct_access', 'engagement_index']].max())
         engage_df = pd.concat(dfs)
         engage_df1 = engage_df.groupby(by=['dt'])[['pct_access', 'engagement_index']].mean()
-        engage_df2 = engage_df.groupby(by=['dt', 'lp_id'])[['pct_access', 'engagement_index']].mean()
-        engage_df2.reset_index().set_index('dt')
+        #engage_df2 = engage_df.groupby(by=['dt', 'lp_id'])[['pct_access', 'engagement_index']].mean()
+        #engage_df2.reset_index().set_index('dt')
 
-        pct_free_reduced_lunch_map[val] = [engage_df1, engage_df2]
+        #pct_free_reduced_lunch_map[val] = [engage_df1, engage_df2]
+        pct_free_reduced_lunch_map[val] = engage_df1
     return pct_free_reduced_lunch_map
 
-""" Generate Nation Wide DataFrames """
+""" Generate Nation Wide DataFrames"""
 
 def us_dfs(engage_dfs: list, covid_case_df: pd.DataFrame):
     engage_df_us = pd.concat(engage_dfs)
