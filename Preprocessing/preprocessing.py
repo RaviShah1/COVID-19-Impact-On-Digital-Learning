@@ -4,6 +4,15 @@ The original data/input for all these functions can be located at the following 
 2) https://github.com/nytimes/covid-19-data
 """
 
+import pandas as pd
+import numpy as np
+import glob
+import datetime as dt
+
+import warnings
+warnings.filterwarnings('ignore')
+pd.set_option("display.max_columns", 100)
+
 def time_to_dt(time):
     return dt.datetime.strptime(time, "%Y-%m-%d")
 
