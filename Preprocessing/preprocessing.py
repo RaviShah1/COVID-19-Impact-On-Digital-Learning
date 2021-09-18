@@ -114,7 +114,7 @@ def generate_pct_free_reduced_lunch_map(districts_df: pd.DataFrame, engage_dfs: 
         pct_free_reduced_lunch_map[val] = [engage_df1, engage_df2]
     return pct_free_reduced_lunch_map
 
-""" Generate Nation Wide DataFrames"""
+""" Generate Nation Wide DataFrames """
 
 def us_dfs(engage_dfs: list, covid_case_df: pd.DataFrame):
     engage_df_us = pd.concat(engage_dfs)
