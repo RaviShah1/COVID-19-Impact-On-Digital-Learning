@@ -24,7 +24,7 @@ def plot_product_barpolar(df: pd.DataFrame, products_df: pd.DataFrame):
         try:
             label = str(products_df[products_df['LP ID'] == int(prod_data.index[i])]["Product Name"].values[0])
         except Exception:
-            label = "not known"
+            label = "name not known"
         color = px.colors.sequential.Teal[6-i]
         plots.append(go.Barpolar(
             r=[prod_data.iloc[i][1]],
