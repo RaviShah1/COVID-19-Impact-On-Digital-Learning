@@ -41,7 +41,6 @@ long_teal = ['rgb(42, 86, 116)',
              'rgb(178, 225, 223)',
              'rgb(188, 232, 227)',
              'rgb(209, 238, 234)']
-px.colors.sequential.Teal_r
 
 def plot_sample_size_details(districts_df: pd.DataFrame, products_df: pd.DataFrame):
     fig = make_subplots(rows=1, cols=3, specs=[[{"type": "pie"}, {"type": "pie"}, {"type": "pie"}]],
