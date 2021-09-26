@@ -17,7 +17,7 @@ import warnings
 warnings.filterwarnings('ignore')
 pd.set_option("display.max_columns", 100)
 
-def plot_product_barpolar(df: pd.DataFrame, products_df: pd.DataFrame):
+def plot_product_barpolar(df: pd.DataFrame, products_df: pd.DataFrame, title:str):
     prod_data = df.nlargest(7, 'engagement_index')
     plots = list()
     for i in range(7):
@@ -43,7 +43,8 @@ def plot_product_barpolar(df: pd.DataFrame, products_df: pd.DataFrame):
             radialaxis = dict(showticklabels=False, ticks=''),
             angularaxis = dict(showticklabels=False, ticks='')
         ),
-        showlegend=True
+        showlegend=True,
+        title=title, title_x=.45
     )
 
     fig.show()
