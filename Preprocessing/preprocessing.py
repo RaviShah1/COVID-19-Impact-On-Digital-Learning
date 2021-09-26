@@ -49,7 +49,7 @@ def preprocess_districts_df(df: pd.DataFrame):
     df['pp_total_raw'] = df['pp_total_raw'].apply(format_population)
     return df
 
-""" Preprocess Engage DataFrames"""
+""" Preprocess Engage DataFrames """
 
 def link_district_to_engage_df(loc_id: int, engage_files: list):
     for i in range(len(engage_files)):
@@ -62,7 +62,7 @@ def preprocess_engage_dfs(engage_dfs: list, enage_files:list, districts_df: pd.D
         df['dt'] = df['time'].apply(time_to_dt)
     districts_df['engage_file_id'] = districts_df['district_id'].apply(lambda x: link_district_to_engage_df(x, engage_files)) 
 
-""" Preprocessing NY Times COVID cases DataFrame"""
+""" Preprocessing NY Times COVID cases DataFrame """
 
 def preprocess_nytime_cases_df(df: pd.DataFrame) :
     df['dt'] = df['date'].apply(time_to_dt)
@@ -124,6 +124,22 @@ def generate_pct_free_reduced_lunch_map(districts_df: pd.DataFrame, engage_dfs: 
         #pct_free_reduced_lunch_map[val] = [engage_df1, engage_df2]
         pct_free_reduced_lunch_map[val] = engage_df1
     return pct_free_reduced_lunch_map
+
+def product_dfs(engage_dfs: list, districts_df: pd.DataFrame):
+    engage_df_us = pd.concat(engage_dfs)
+    product_df_us = engage_df_us.groupby(by=['lp_id'])[['pct_access', 'engagement_index']].mean()
+    
+    prod_lunch_dfs = dict()
+    for val in np.unique(districts_df['pct_free/reduced'].values):
+        ids = districts_df[districts_df['pct_free/reduced'] == val].engage_file_id.values
+        dfs = list()
+        for i in ids:
+            dfs.append(engage_dfs[i].groupby(by=['lp_id'])[['pct_access', 'engagement_index']].mean())
+        engage_df = pd.concat(dfs)
+        prod_lunch_dfs[val] = (engage_df.groupby(by=['lp_id'])[['pct_access', 'engagement_index']].mean())
+    
+    return product_df_us, prod_lunch_dfs
+
 
 """ Generate Nation Wide DataFrames"""
 
