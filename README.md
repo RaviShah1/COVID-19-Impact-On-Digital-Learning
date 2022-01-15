@@ -6,7 +6,7 @@ This is the code I wrote for the LearnPlatform COVID-19 Impact on Digital Learni
 
 My official submission titled COVID-19's Collision With Digital Learning can be found here: https://www.kaggle.com/ravishah1/covid-19-s-collision-with-digital-learning
 
-My submission recieved an honorable mention (1 in 4 honorable mentions out of over 100 submissions)
+My submission recieved an honorable mention (1 of 4 honorable mentions out of over 100 submissions)
 
 ## Repo Description
 
