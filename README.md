@@ -17,7 +17,6 @@ This repo is split into folders containing the code I used in my notebook
 - **Geospatial_Analysis** conatins functions to create maps to analyze the data
 - **Socioeconomic_Analysis** contains functions to create bar and barpolar charts to analyze socioeconomic features 
 - **visuals** contains png files of the graphs
-- **covid-19-s-collision-with-digital-learning.ipynb** code in notebook format (cannot see cell outputs)
 
 ## See Visualization
 
