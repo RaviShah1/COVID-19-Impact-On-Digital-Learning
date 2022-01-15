@@ -20,5 +20,5 @@ This repo is split into folders containing the code I used in my notebook
 
 ## See Visualization
 
-The plots/charts can be in in my official submission here: https://www.kaggle.com/ravishah1/covid-19-s-collision-with-digital-learning
+The plots/charts and analysis can be in in my official submission here: https://www.kaggle.com/ravishah1/covid-19-s-collision-with-digital-learning
 
